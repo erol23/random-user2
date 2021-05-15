@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    margin-top: -19rem;
 }
 .backgroundTwo{
     height: 4rem;
@@ -32,7 +31,17 @@
 }
 .image{
     border-radius: 50px;
-    box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.11);
+    box-shadow: 0px 3px 3px 2px rgba(0, 0, 0, 0.2);
+    border: 2px solid white;
+}
+.info{
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+p{
+    margin: 0.5rem auto 0;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 .icon{
     object-fit: cover;
@@ -53,6 +62,7 @@
 .btn{
     display: flex;
     justify-content: space-around;
+    width: 28rem;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
