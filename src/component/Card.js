@@ -16,7 +16,7 @@ const Cards = () => {
   const [visible, setVisible] = useState(false);
   const [addList, setAddList] = useState([]);
   const [newUser, setNewUser] = useState('NEW USER');
-  const [userInfo, setUserInfo] = useState('name');
+  const [userInfo, setUserInfo] = useState('My name is');
 
   const getData = () => {
     setNewUser('LOADING...')
@@ -24,27 +24,28 @@ const Cards = () => {
       setUserCard(response.data.results[0]);
       console.log(response.data.results);
     }).then(() => setNewUser('NEW USER'));
+    setUserInfo('My name is')
   };
 
   const creatUser = () => {
     let i;
     for (i= 0; i < addList.length; i++){
-      if(userCard?.email.includes(addList[i].email)){
-        setAddList([...addList])
-        console.log(userCard?.email.includes(addList[i].email));
-      }else{
-          setAddList([
-              ...addList,{
-                  name : userCard?.name?.first, 
-                  last : userCard?.name?.last,
-                  email : userCard?.email,
-                  phone : userCard?.phone,
-                  age : userCard?.dob?.age,
-              }
-          ])
-      }
+        var usr =(userCard?.email.includes(addList[i].email));
     }
-        setVisible(true);
+    {usr ? 
+        setUserInfo('Can not add this user again')
+     :
+        setAddList([
+            ...addList,{
+                name : userCard?.name?.first, 
+                last : userCard?.name?.last,
+                email : userCard?.email,
+                phone : userCard?.phone,
+                age : userCard?.dob?.age,
+            }
+        ])
+    }
+    setVisible(true);
   }
   useEffect(() => {
     getData();
@@ -62,38 +63,38 @@ const Cards = () => {
               alt={userCard?.name?.first}
               className="image"
             />
-            <p className="info"> My {userInfo} is</p>
-            <p>{userInfo === "name" && userCard?.name?.first} {userInfo === "name" && userCard?.name?.last}</p>
-            <p>{userInfo === "email" && userCard?.email}</p>
-            <p>{userInfo === "age" && userCard?.dob?.age}</p>
-            <p>{userInfo === "location" && userCard?.location?.street?.number} {userInfo === "location" && userCard?.location?.street?.name}</p>
-            <p>{userInfo === "phone" && userCard?.phone}</p>
-            <p>{userInfo === "password" && userCard?.login?.password}</p>
-            <div className="icons">
-              <button className="iconBtn" onMouseEnter={() => setUserInfo('name')}>
+            <p className="info">{userInfo}</p>
+            <p>{userInfo === "My name is" && userCard?.name?.first} {userInfo === "My name is" && userCard?.name?.last}</p>
+            <p>{userInfo === "My email is" && userCard?.email}</p>
+            <p>{userInfo === "My age is" && userCard?.dob?.age}</p>
+            <p>{userInfo === "My location is" && userCard?.location?.street?.number} {userInfo === "My location is" && userCard?.location?.street?.name}</p>
+            <p>{userInfo === "My phone is" && userCard?.phone}</p>
+            <p>{userInfo === "My password is" && userCard?.login?.password}</p>
+            <div className="My icons is">
+              <button className="My iconBtn is" onMouseEnter={() => setUserInfo('My name is')}>
                 {userCard?.gender === "female" ? (
                   <img src={woman} alt="woman" className="icon" />
                 ) : (
                   <img src={man} alt="man" className="icon" />
                 )}
               </button>
-              <button className="iconBtn" onMouseEnter={() => setUserInfo('email')}>
+              <button className="iconBtn" onMouseEnter={() => setUserInfo('My email is')}>
                 <img src={mail} alt="mailIcon" className="icon"/>
               </button>
-              <button className="iconBtn" onMouseEnter={() => setUserInfo('age')}>
+              <button className="iconBtn" onMouseEnter={() => setUserInfo('My age is')}>
                 {userCard?.gender === "female" ? (
                   <img src={growingUpWoman} alt="woman" className="icon" />
                 ) : (
                   <img src={growingUpMan} alt="man" className="icon" />
                 )}
               </button>
-              <button className="iconBtn" onMouseEnter={() => setUserInfo('location')}>
+              <button className="iconBtn" onMouseEnter={() => setUserInfo('My location is')}>
                 <img src={map} alt="mapIcon" className="icon" />
               </button>
-              <button className="iconBtn" onMouseEnter={() => setUserInfo('phone')}>
+              <button className="iconBtn" onMouseEnter={() => setUserInfo('My phone is')}>
                 <img src={phone} alt="phoneIcon" className="icon" />
               </button>
-              <button className="iconBtn" onMouseEnter={() => setUserInfo('password')}>
+              <button className="iconBtn" onMouseEnter={() => setUserInfo('My password is')}>
                 <img src={padlock} alt="padlockIcon" className="icon" />
               </button>
             </div>
